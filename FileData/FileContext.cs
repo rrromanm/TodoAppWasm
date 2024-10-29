@@ -8,16 +8,6 @@ public class FileContext
     private readonly string FilePath = "data.json";
 
     private DataContainer? dataContainer;
-
-    public FileContext()
-    {
-        var initialData = new DataContainer
-        {
-            Todos = new List<Todo>(),
-            Users = new List<User>()
-        };
-        File.WriteAllText(FilePath, JsonSerializer.Serialize(initialData));
-    }
     public ICollection<Todo> Todos
     {
         get
@@ -56,11 +46,10 @@ public class FileContext
 
     public void SaveChanges()
     {
-        var options = new JsonSerializerOptions
+        string serialized = JsonSerializer.Serialize(dataContainer, new JsonSerializerOptions
         {
-            WriteIndented = true // Enables pretty-printing with indentation
-        };
-        string serialized = JsonSerializer.Serialize(dataContainer, options);
+            WriteIndented = true
+        });
         File.WriteAllText(FilePath, serialized);
         dataContainer = null;
     }

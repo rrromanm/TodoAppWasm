@@ -1,15 +1,17 @@
-﻿namespace Shared;
-
-public class Todo
+﻿namespace Shared
 {
-    public int Id {get; set; }
-    public User Owner {get; set; }
-    public string Title {get; set; }
-    public bool IsCompleted {get; set; } = false;
-
-    public Todo(User user, string title)
+    public class Todo
     {
-        Owner = user;
-        Title = title;
+        public int Id { get; set; }
+        public User Owner { get; set; }
+        public string Title { get; set; }
+        public bool IsCompleted { get; set; } = false;
+
+        public Todo() { }
+        public Todo(User user, string title)
+        {
+            Owner = user;
+            Title = title;
+        }
     }
 }

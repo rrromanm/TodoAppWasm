@@ -2,8 +2,35 @@
   "Users": [
     {
       "Id": 1,
-      "Username": "string"
+      "Username": "rom"
+    },
+    {
+      "Id": 2,
+      "Username": "roma"
+    },
+    {
+      "Id": 3,
+      "Username": "roman"
     }
   ],
-  "Todos": []
+  "Todos": [
+    {
+      "Id": 2,
+      "Owner": {
+        "Id": 2,
+        "Username": "roma"
+      },
+      "Title": "Gym Pull",
+      "IsCompleted": true
+    },
+    {
+      "Id": 3,
+      "Owner": {
+        "Id": 1,
+        "Username": "rom"
+      },
+      "Title": "hello world",
+      "IsCompleted": false
+    }
+  ]
 }
