@@ -6,7 +6,7 @@ using Shared.DTOs;
 namespace WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("users")]
 
 public class UserController : ControllerBase
 {
