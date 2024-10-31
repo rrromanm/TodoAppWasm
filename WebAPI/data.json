@@ -45,15 +45,6 @@
       "IsCompleted": false
     },
     {
-      "Id": 4,
-      "Owner": {
-        "Id": 2,
-        "Username": "roma"
-      },
-      "Title": "Finish todoApp",
-      "IsCompleted": false
-    },
-    {
       "Id": 5,
       "Owner": {
         "Id": 1,
@@ -61,6 +52,15 @@
       },
       "Title": "hello world",
       "IsCompleted": false
+    },
+    {
+      "Id": 4,
+      "Owner": {
+        "Id": 2,
+        "Username": "roma"
+      },
+      "Title": "Finish todoApp",
+      "IsCompleted": true
     }
   ]
 }
