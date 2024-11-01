@@ -9,6 +9,7 @@ public interface ITodoService
     Task<ICollection<Todo> > GetTodosAsync(string? username, int? userId, bool? isCompleted, string? titleContains);
     Task UpdateAsync (TodoUpdateDTO dto);
     Task<TodoBasicDTO> GetByIdAsync(int id);
+    Task DeleteAsync(int id);
     
     
 }

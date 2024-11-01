@@ -5,6 +5,7 @@
 @using Shared.DTOs
 @using UIComponents
 @inject ITodoService todoService
+@inject NavigationManager navMgr
 
 <h3>ViewTodos</h3>
 
@@ -54,9 +55,12 @@ else
     <thead>
     <tr>
         <th>Todo ID</th>
-        <th>Owner ID</th>
+        <th>Owner</th>
         <th>Title</th>
+        <th>Status</th>
         <th>Completed?</th>
+        <th>Edit</th>
+        <th>Delete?</th>
     </tr>
     </thead>
     <tbody>
@@ -69,7 +73,15 @@ else
         <td>@item.IsCompleted</td>
         <td>
             <FancyCheckBox IsCompleted="@item.IsCompleted" OnChange="@((value) => CompleteTodo(item, value))"/>
-            </td>
+        </td>
+        <td>
+            <img src="icons/edit.gif" class="funnel" @onclick="@(() => navMgr.NavigateTo($"/EditTodo/{item.Id}"))"/>
+        </td>
+        <td>
+            <label @onclick="@(() => RemoveTodo(item.Id))" style="cursor:pointer; color: red; font-weight: bold">
+                &#x2717;
+            </label>
+        </td>
     </tr>
     }
     </tbody>
@@ -105,6 +117,24 @@ else
             todos = await todoService.GetTodosAsync(usernameFilter, userIdFilter, completedFilterValue, titleContainsFilter);
         }
 
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+    
+    private async Task RemoveTodo(int todoId)
+    {
+        msg = "";
+        try
+        {
+            await todoService.DeleteAsync(todoId);
+        
+            var list = new List<Todo>(todos!);
+            list.RemoveAll(todo => todo.Id == todoId);
+            todos = list.AsEnumerable();
+        }
         catch (Exception e)
         {
             Console.WriteLine(e);
